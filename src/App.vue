@@ -12,7 +12,7 @@ const loadPlugin = async () => {
   }
   const index = await join(pluginDir, "dist/index.html")
   if (!await exists(index)) {
-    alert(`please run pnpm build and copy dist to ${pluginDir}/test`)
+    alert(`please run [pnpm build] and [copy -r ./dist to ${pluginDir}/]`)
     return
   }
   iframe.style.border = '1px solid red';

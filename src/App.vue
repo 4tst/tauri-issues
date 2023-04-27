@@ -1,23 +1,31 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { appDataDir, join } from '@tauri-apps/api/path'
+import { createDir, exists } from '@tauri-apps/api/fs'
+import { convertFileSrc } from '@tauri-apps/api/tauri';
+
+ const wrapperRef = ref<HTMLDivElement>()
+const loadPlugin = async () => {
+  const iframe = document.createElement('iframe')
+  const pluginDir = await join(await appDataDir(), "plugins")
+  if (!await exists(pluginDir)) {
+    await createDir(pluginDir)
+  }
+  const index = await join(pluginDir, "dist/index.html")
+  if (!await exists(index)) {
+    alert(`please run pnpm build and copy dist to ${pluginDir}/test`)
+    return
+  }
+  iframe.style.border = '1px solid red';
+  iframe.src=convertFileSrc(index)
+  wrapperRef.value?.appendChild(iframe)
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div>
+  <button @click="loadPlugin">click to load plugin</button>
+  <div ref="wrapperRef"></div>
+  </div>
 </template>
 
 <style scoped>

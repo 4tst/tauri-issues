@@ -10,6 +10,7 @@ import './assets/tailwind.css'
 import './assets/main.css'
 
 window.addEventListener("DOMContentLoaded", async () => {
+    console.info("DOMContentLoaded")
     const dir = await appDataDir()
     if (!await exists(dir)) {
         await createDir(dir)

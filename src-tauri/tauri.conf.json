@@ -85,11 +85,23 @@
     },
     "windows": [
       {
+        "theme": "Light",
+        "maxHeight": 600,
+        "maxWidth": 800,
         "fullscreen": false,
-        "height": 600,
-        "resizable": true,
+        "resizable": false,
         "title": "ipa",
-        "width": 800
+        "decorations": false,
+        "visible": false,
+        "center": true
+      },
+      {
+        "maxHeight": 600,
+        "maxWidth": 800,
+        "decorations": false,
+        "url": "splashscreen.html",
+        "label": "splashscreen",
+        "center": true
       }
     ]
   }

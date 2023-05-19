@@ -1,7 +1,7 @@
 
 procedures to reproduce:
 1. git clone https://github.com/4tst/tauri-plugins.git
-2. cd tauri-plugins
+2. `cd tauri-plugins` and `git checkout bug/DOMContentLoaded`
 3. pnpm install
 4. pnpm tauri build
 5. start target/release/ipa.exe

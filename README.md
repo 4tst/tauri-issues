@@ -1,7 +1,7 @@
 
 procedures to reproduce:
 1. git clone https://github.com/4tst/tauri-plugins.git
-2. cd tauri-plugins
+2. `cd tauri-plugins` and `git checkout bug/iframe`
 3. pnpm install
 4. pnpm tauri:dev
 5. click to load plugin `dist` and follow alert message to fix missing plugin

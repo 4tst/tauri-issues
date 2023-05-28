@@ -18,17 +18,26 @@
         "all": true
       },
       "fs": {
-        "all": false,
-        "copyFile": false,
+        "all": true,
+        "copyFile": true,
         "createDir": true,
         "exists": true,
         "readDir": true,
         "readFile": true,
-        "removeDir": false,
-        "removeFile": false,
-        "renameFile": false,
-        "scope": ["$APPDATA", "$APPDATA/**/*"],
-        "writeFile": false
+        "removeDir": true,
+        "removeFile": true,
+        "renameFile": true,
+        "scope": [
+          "$APPDATA",
+          "$APPDATA/**/*",
+          "$APPDATA/**",
+          "$APPDATA/*",
+          "$HOME",
+          "$HOME/**",
+          "$HOME/*",
+          "$HOME/**/*"
+        ],
+        "writeFile": true
       },
       "protocol": {
         "all": false,

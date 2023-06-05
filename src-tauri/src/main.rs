@@ -3,7 +3,7 @@
     windows_subsystem = "windows"
 )]
 
-use tauri::Manager;
+use tauri::{Manager, RunEvent};
 
 fn main() {
     tauri::Builder::default()
@@ -16,6 +16,12 @@ fn main() {
             }
             Ok(())
         })
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .build(tauri::generate_context!())
+        .expect("error while running tauri application")
+        .run(|_app_handle, event| {
+            println!("{:?}",event);
+            if let RunEvent::Updater(updater_event) = event {
+                dbg!(updater_event);
+            }
+        });
 }

@@ -9,7 +9,7 @@
   },
   "package": {
     "productName": "ipa",
-    "version": "0.1.0"
+    "version": "0.1.2"
   },
   "tauri": {
     "allowlist": {
@@ -90,7 +90,13 @@
       "csp": "asset: "
     },
     "updater": {
-      "active": false
+      "active": true,
+      "endpoints": ["https://ipa.leoking.xyz/{{target}}/{{arch}}/{{current_version}}.json"],
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEMyNUZDODdCQjUyRkIzNzQKUldSMHN5KzFlOGhmd3ZDd0c2alROdzB0ejlmVUU3Mm9WUXRHUnNMSjVhY0Q3c3RkajJBZW5pY0YK",
+      "windows": {
+        "installMode": "passive"
+      }
     },
     "windows": [
       {
@@ -101,7 +107,7 @@
         "resizable": false,
         "title": "ipa",
         "decorations": false,
-        "visible": false,
+        "visible": true,
         "center": true
       },
       {
@@ -110,7 +116,8 @@
         "decorations": false,
         "url": "splashscreen.html",
         "label": "splashscreen",
-        "center": true
+        "center": true,
+        "visible":false
       }
     ]
   }

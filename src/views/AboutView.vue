@@ -1,19 +1,44 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <div class="flex flex-col">
-      <div class="bottom-2">tailwindcss</div>
-      <div class="flex-1 border">hello tailwindcss</div>
-    </div>
+      <button @click="checkForUpdate">check for update</button>
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<script lang="ts" setup>
+import { type UnlistenFn } from '@tauri-apps/api/event';
+import { checkUpdate, onUpdaterEvent } from '@tauri-apps/api/updater';
+
+let unlisten: UnlistenFn | undefined = undefined;
+
+onMounted(async () => {
+  // FIXME: not work
+  unlisten = await onUpdaterEvent(({ error, status }) => {
+    console.log('Updater event', error, status);
+  });
+  console.log(unlisten)
+})
+const checkForUpdate = () => {
+  console.log("checkForUpdate")
+  checkUpdate().then(({ shouldUpdate, manifest }) => {
+    console.log(shouldUpdate, manifest)
+  }).catch(e => {
+    console.error(e)
+  })
 }
+onUnmounted(() => {
+  console.log("unmounted")
+  if (unlisten) {
+    unlisten()
+  }
+})
+
+</script>
+
+<style scoped>
+
+button{
+  border: 2px solid black;
+  width: 200px;
+}
+
 </style>
